@@ -1,0 +1,112 @@
+<link rel="stylesheet" type="text/css" href="[home]template/css/style2.css">
+<div class="title mgbot10">Личный кабинет</div>
+<div class="direction m1024none">
+    <div class="title">Навигация</div>
+    <ul>
+        <li><a href="[home]user/section/lk"><i class="fas fa-user"></i>Профиль</a></li>
+        <li><a class="active" href="[home]user/section/replenish"><i class="fas fa-rub"></i>Баланс</a></li>
+        <li><a href="[home]user/section/lk/subsection/logs"><i class="fas fa-list-alt"></i>Операции</a></li>
+        <li><a href="[home]user/section/lk/subsection/settings"><i class="fas fa-cog"></i>Настройки</a></li>
+        <li><a href="[home]user/section/lk/subsection/auth"><i class="fas fa-sign-in-alt"></i>Авторизации</a></li>
+        <li><a href="[home]user/section/lk/subsection/security"><i class="fas fa-lock"></i>Безопасность</a></li>
+    </ul>
+</div>
+<div class="navigation b1025none">
+    <a href="#" class="sublnk">Навигация <span class="icon"><i class="fa fa-angle-down"></i></span></a>
+    <ul class="subnav">
+        <li><a href="[home]user/section/lk"><i class="fas fa-user"></i>Профиль</a></li>
+        <li><a class="active" href="[home]user/section/replenish"><i class="fas fa-rub"></i>Баланс</a></li>
+        <li><a href="[home]user/section/lk/subsection/logs"><i class="fas fa-list-alt"></i>Операции</a></li>
+        <li><a href="[home]user/section/lk/subsection/settings"><i class="fas fa-cog"></i>Настройки</a></li>
+        <li><a href="[home]user/section/lk/subsection/auth"><i class="fas fa-sign-in-alt"></i>Авторизации</a></li>
+        <li><a href="[home]user/section/lk/subsection/security"><i class="fas fa-lock"></i>Безопасность</a></li>
+    </ul>
+</div>
+<script>
+    $(document).ready(function() {
+        $('.sublnk').click(function() {
+            var $other_spoilers = $('a.sublnk').not(this);
+            $other_spoilers.siblings().hide('fast');
+
+            $other_spoilers.find('span').html('<i class="fa fa-angle-down"></i>');
+
+            $(this).siblings().toggle('fast', function() {
+                var $icon = $(this).siblings('a.sublnk').find('span');
+
+                if ($icon.html() == '<i class="fa fa-angle-down"></i>')
+                    $icon.html('<i class="fa fa-angle-up"></i>');
+                else
+                    $icon.html('<i class="fa fa-angle-down"></i>');
+            });
+
+            return false;
+        });
+    });
+</script>
+<div class="full right">
+    <div class="server mgbot10">
+        <div class="title">Пополнение баланса</div>
+        <ul class="hostingstyle input_pad">
+            <form onsubmit="return replenish(false);" action="https://merchant.webmoney.ru/lmi/payment.asp" method="POST">
+                <li class="lk-full">
+                    <div class="lk-info">Ваш баланс:</div>
+                    <div><strong>[balance] [cur]</strong></div>
+                </li>
+                <li>
+                    <div class="lk-info">Пополнить:</div>
+                    <div class="lk-replenish">
+                        <input id="sum" pattern="[0-9]{1,20}" placeholder="Укажите сумму" value=""> [cur].</div>
+                    <div class="lk-btn1">
+                        <div onclick="return replenish(true);" class="knob big btn-max btn-success">Пополнить</div>
+                    </div>
+                    <!--div class="lk-btn1">
+                        <button class="knob big btn-max btn-info">WebMoney</button>
+                    </div-->
+                </li>
+                <div class="data">
+                    <div class="informer blue">Укажите необходимую сумму для пополнения баланса и выберите платежную систему. Далее следуйте инструкциям платежной системы. Помните, что дополнительно может взыматься комиссия.</div>
+                </div>
+		        <input type="hidden" name="LMI_PAYMENT_NO" value="1">
+		        <input type="hidden" name="LMI_PAYMENT_AMOUNT" id="amount">
+		        <input type="hidden" name="LMI_PAYMENT_DESC_BASE64" value="0J/QvtC/0L7Qu9C90LXQvdC40LUg0YHRh9C10YLQsA==">
+		        <input type="hidden" name="LMI_PAYEE_PURSE" value="[wmr]">
+		        <input type="hidden" name="us_user" value="[id]">
+            </form>
+        </ul>
+    </div>
+    <!--<img src="[home]template/images/replenish/mastercard.jpg" width="80" class="box-shadow">-->
+    <div class="server">
+        <div class="title">Последние пополнения баланса</div>
+        <ul class="hostingstyle input_pad">
+            [logs]
+        </ul>
+    </div>
+	[pages]
+</div>
+<script type="text/javascript">
+    function replenish(free) {
+        sum = $('#sum').val();
+
+        if (sum < 1)
+            bootbox.dialog('Необходимо указать сумму', [{
+                "label": "OK",
+                "class": "btn-small btn-primary",
+            }]);
+        else {
+            if (free)/*
+				location.href='https://unitpay.ru/pay/?sum='+sum+'&account=[id]&desc=Пополнение+счета';
+			 freekassa*/
+			$.get(home+'user/section/replenish/key/get/sum/'+sum, function(data){
+				location.href='http://www.free-kassa.ru/merchant/cash.php?m=[freekassa]&o=1&us_user=[id]&lang=ru&pay=Пополнение счета&oa='+sum+'&s='+data;
+			});
+			
+            else {
+                $('#amount').val(sum);
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+</script>

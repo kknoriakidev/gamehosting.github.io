@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="gamepanel">
+        <div class="center">
+            <div class="title">Техническая поддержка</div>
+            <div class="description">Список открытых вопросов</div>
+            <a href="[home]help/section/create">
+                <div class="btn-red btn-smaller">Задать вопрос</div>
+            </a>
+            <a href="[home]help/section/close">
+                <div class="btn-red btn-smaller right">Закрытые вопросы</div>
+            </a>
+            <table class="ipad mgtop20">
+                <thead>
+                    <tr>
+                        <th class="tacenter m600none">№</th>
+                        <th>Информация</th>
+                        |support|<th align="left">Создатель</th>|_support|
+                        <th>Состояние</th>
+                        <th class="m480none">Управление</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    [question]
+                </tbody>
+            </table>
+			[pages]
+        </div>
+    </div>
+</div>
+<style>
+    table.ipad tbody tr:hover {
+        background-color: #f7f3f7;
+    }
+</style>
+<script src="[js]help.js" type="text/javascript"></script>

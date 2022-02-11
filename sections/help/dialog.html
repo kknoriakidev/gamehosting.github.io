@@ -1,0 +1,112 @@
+<div class="container">
+    <div class="gamepanel">
+        <div class="center">
+            <div class="title">Техническая поддержка</div>
+            <div class="description">Вопрос №[id]</div>
+            <a href="[home]help/section/open">
+                <div class="btn-red btn-smaller mgright5">Открытые вопросы</div>
+            </a>
+            <a href="[home]help/section/close">
+                <div class="btn-red btn-smaller">Закрытые вопросы</div>
+            </a>
+            <div class="server mgtop10">
+                <div class="title">Тема вопроса: [title]</div>
+                <ul class="hostingstyle input_pad">
+                    <li class="full">
+                        Услуга: [service]
+                        <span class="right">
+							|open|<div class="knob" style="line-height:16px;" onclick="help_close('[id]')">Закрыть</div>|_open|
+							|close|<div class="knob" style="line-height:16px;" onclick="help_open('[id]')">Открыть</div>|_close|
+						</span>
+                    </li>
+
+                    <li class="full">
+                        Создан: [date]
+                    </li>
+                    <li class="full">
+                        Статус: <span id="status">[status]</span>
+                    </li>
+                </ul>
+            </div>
+			
+			|open|
+			
+			|!user|
+			<div class="server mgtop10">
+                <div class="title">Информация</div>
+                <ul class="hostingstyle input_pad">
+                    <li class="full">
+                        Кто читает: <span id="help_readers">Определяется...</span>
+                    </li>
+                    <li class="full">
+                        Кто пишет: <span id="help_writers">Определяется...</span>
+                    </li>
+                </ul>
+            </div>
+			|_!user|
+
+            <form action="[home]help/section/dialog/id/[id]/action/reply" method="POST" id="reply">
+                <div class="server block mgtop10">
+                    <div class="title">Новое сообщение</div>
+                    <ul class="hostingstyle input_pad">
+                        <li>
+                            <div class="wysibb">
+								<textarea rows="8" id="text" name="text" oninput="help_writers(true)" placeholder="Опишите вашу проблему или задайте вопрос"></textarea>
+                                <div class="bottom-resize-line"></div>
+                            </div>
+                        </li>
+                        <li id="upload_block">
+                            <p>Изображения/скриншоты:</p>
+                            <label for="img" class="custom-file-upload">
+                                <i class="fa fa-upload"></i> Выбрать изображения
+                                <div id="frm">
+                                    <input id="img" type="file" multiple="">
+                                </div>
+                            </label>
+                            <div id="uploaded-holder">
+                                <div id="dropped-files">
+                                    <div id="upload-button">
+                                        <center>
+                                            <a href="#" class="upload">
+                                                <div class="knob big btn-success margin-right">Загрузить</div>
+                                            </a>
+                                            <a href="#" class="delete">
+                                                <div class="knob big">Отменить добавление</div>
+                                            </a>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="uploaded-files" style="display: none;"></div>
+                        </li>
+                        <div class="data">
+                            <button class="support-btn" onclick="$('#text').val($('#text').bbcode()); loading(1)">Отправить сообщение</button>
+                        </div>
+                    </ul>
+                </div>
+                <div id="img-input"></div>
+            </form>
+            |_open|
+			
+            <div class="server mgtop10 help_dialog">
+                <div class="title">Диалог</div>
+                <div class="data messager art-sidebar_comm art-block_hide hidden-xs hidden-sm" id="dialog">
+                    [dialog]
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" type="text/css" href="[css]help.css" media="screen">
+<script type="text/javascript">
+    var help = '[id]';
+
+    $(document).ready(function() {
+        setTimeout(function() {
+            dialog_update(true);
+            help_readers();
+            help_writers(false)
+        }, 1000);
+    });
+</script>
+<script type="text/javascript" src="[js]help.js?2"></script>

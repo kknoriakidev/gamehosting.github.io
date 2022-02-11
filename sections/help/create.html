@@ -1,0 +1,110 @@
+<div class="container">
+    <div class="gamepanel">
+        <div class="center">
+            <div class="title mgbot10">Техническая поддержка</div>
+            <a href="[home]help/section/open">
+                <div class="btn-red btn-smaller mgright5">Открытые вопросы</div>
+            </a>
+            <a href="[home]help/section/close">
+                <div class="btn-red btn-smaller">Закрытые вопросы</div>
+            </a>
+            <div class="informer blue mgtop10 mgbot10">
+                <p><strong>Правила обращения в тех. поддержку:</strong></p>
+                <ul>
+                    <li>1. Перед созданием запроса, убедитесь что в <a href="[home]wiki">нашей вики</a> нет ответа на ваш вопрос;</li>
+                    <li>2. При обращении правильно формулируйте и детально описывайте свой вопрос/проблему, так Вам смогут быстрее помочь;</li>
+                    <li>3. Падает/не запускается сервер? При обращении прикладывайте логи консоли;</li>
+                    <li>4. Все обращения обрабатываются в порядке очереди, дождитесь своей очереди - вам обязательно ответят;</li>
+                    <li>5. Если сервер не оплачен, то осуществляется только <span class="dashed" data-toggle="tooltip" data-placement="top" title="" data-original-title="Помощь в настройке сервера не предусмотрена">базовая тех. поддержка</span>;</li>
+                    <li>6. Обращайтесь вежливо, адекватно. При оскорблении сотрудников доступ к тех. поддержке может быть заблокирован;</li>
+                    <li>7. Если вопрос решен, то не забывайте закрывать тикет - кнопка "Закрыть тикет".</li>
+                </ul>
+            </div>
+            <form action="[home]help/section/create/go" method="POST" id="create">
+                <div class="server block">
+                    <div class="title">Форма создания вопроса</div>
+                    <ul class="hostingstyle input_pad">
+                        <li>
+                            <div class="support-info">
+                                <label for="title">Заголовок:</label>
+                            </div>
+                            <div class="support-input">
+                                <input name="title" type="text" placeholder="Введите заголовок вопроса">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="support-info">
+                                <label for="service">Услуга:</label>
+                            </div>
+                            <div class="support-input">
+                                <select id="service" name="service">
+                                    <option value="0">Выберите услугу связанную с вопросом</option>
+                                    <option value="none">Вопрос не связан с конкретной услугой</option>
+                                    [services]
+                                </select>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="wysibb">
+								<textarea id="text" name="text" placeholder="Опишите вашу проблему или задайте вопрос" class="wysibb-texarea" wbbsync="1" style="display: none;"></textarea>
+                                <div class="bottom-resize-line"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <p>Изображения/скриншоты:</p>
+                            <label for="img" class="custom-file-upload">
+                                <i class="fa fa-upload"></i> Выбрать изображения
+                            </label>
+                            <input id="img" type="file" multiple="">
+                            <div id="uploaded-holder">
+                                <div id="dropped-files">
+                                    <div id="upload-button">
+                                        <center>
+                                            <a href="#" class="upload">
+                                                <div class="knob big btn-success margin-right">Загрузить изображения</div>
+                                            </a>
+                                            <a href="#" class="delete">
+                                                <div class="knob big">Отменить добавление</div>
+                                            </a>
+                                            <!--<div id="loading">
+												<div id="loading-bar">
+													<div class="loading-color"></div>
+												</div>
+												<div id="loading-content"></div>
+											</div>-->
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="uploaded-files" style="display: none;"></div>
+                        </li>
+                        <div class="data">
+                            <button class="support-btn" onclick="$('#text').val($('#text').bbcode()); loading(1)">Создать вопрос</button>
+                        </div>
+                    </ul>
+                </div>
+                <div id="img-input"></div>
+            </form>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" type="text/css" href="[css]help.css" media="screen">
+<script type="text/javascript" src="[js]help.js"></script>
+    <link rel="stylesheet" type="text/css" href="[css]wbbtheme.css">
+    <script type="text/javascript" src="[js]wysibb/jquery.wysibb.min.js"></script>
+    <script type="text/javascript" src="[js]wysibb/ru.js"></script>
+    <script>
+        $(document).ready(function() {
+            var wbbOpt = {
+                lang: "ru",
+                buttons: "bold,italic,underline,strike,|,fontcolor,justifyleft,justifycenter,justifyright,|,img,url,|,code,quote,spoiler,|,removeFormat"
+            };
+            $("#text").wysibb(wbbOpt);
+            $("#text").sync();
+        });
+    </script>
+    <style>
+        .wysibb-text-editor {
+            min-height: 100px !important;
+        }
+    </style>

@@ -1,0 +1,31 @@
+<form class="form-wrapper">
+    <input placeholder="Начните вводить вопрос, например, как прописать админку" id="search">
+    <div id="submit" type="submit" onclick="wiki_search(true)">Поиск</div>
+</form>
+<div id="search_result"></div>
+<div class="navigation">
+    <div class="title m1024none">Категории</div>
+    <a href="#" class="sublnk b1025none">Категории <span class="icon"><i class="fa fa-angle-down"></i></span></a>
+    <ul class="subnav">
+        <li><a href="[home]wiki">Все вопросы</a></li>
+		[category_menu]
+    </ul>
+</div>
+<div class="full right">
+    <div class="server">
+        <div class="title">Частозадаваемые вопросы</div>
+        <div class="link">
+            [question]
+        </div>
+    </div>
+	[pages]
+</div>
+<link rel="stylesheet" type="text/css" href="[css]style2.css">
+<link rel="stylesheet" type="text/css" href="[css]wiki.css">
+<script type="text/javascript">
+    $('#search').keyup(function() {
+        wiki_search(false);
+    });
+</script>
+<script src="[js]wiki.js" type="text/javascript"></script>
+<script src="[js]navigation.js" type="text/javascript"></script>

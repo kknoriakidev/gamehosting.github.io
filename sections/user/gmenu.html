@@ -1,0 +1,45 @@
+<link rel="stylesheet" type="text/css" href="[css]style2.css">
+<div class="title mgbot10">Личный кабинет</div>
+<div class="direction m1024none">
+    <div class="title">Навигация</div>
+    <ul>
+        <li><a |index|class="active"|_index| href="[home]user/section/lk"><i class="fas fa-user"></i>Профиль</a></li>
+        <li><a |replenish|class="active"|_replenish| href="[home]user/section/replenish"><i class="fas fa-rub"></i>Баланс</a></li>
+        <li><a |logs|class="active"|_logs| href="[home]user/section/lk/subsection/logs"><i class="fas fa-list-alt"></i>Операции</a></li>
+        <li><a |settings|class="active"|_settings| href="[home]user/section/lk/subsection/settings"><i class="fas fa-cog"></i>Настройки</a></li>
+        <li><a |auth|class="active"|_auth| href="[home]user/section/lk/subsection/auth"><i class="fas fa-sign-in-alt"></i>Авторизации</a></li>
+        <li><a |security|class="active"|_security| href="[home]user/section/lk/subsection/security"><i class="fas fa-lock"></i>Безопасность</a></li>
+    </ul>
+</div>
+<div class="navigation b1025none">
+    <a href="#" class="sublnk">Навигация <span class="icon"><i class="fas fa-angle-down"></i></span></a>
+    <ul class="subnav">
+        <li><a |index|class="active"|_index| href="[home]user/section/lk"><i class="fas fa-user"></i>Профиль</a></li>
+        <li><a |replenish|class="active"|_replenish| href="[home]user/section/replenish"><i class="fas fa-rub"></i>Баланс</a></li>
+        <li><a |logs|class="active"|_logs| href="[home]user/section/lk/subsection/logs"><i class="fas fa-list-alt"></i>Операции</a></li>
+        <li><a |settings|class="active"|_settings| href="[home]user/section/lk/subsection/settings"><i class="fas fa-cog"></i>Настройки</a></li>
+        <li><a |auth|class="active"|_auth| href="[home]user/section/lk/subsection/auth"><i class="fas fa-sign-in-alt"></i>Авторизации</a></li>
+        <li><a |security|class="active"|_security| href="[home]user/section/lk/subsection/security"><i class="fas fa-lock"></i>Безопасность</a></li>
+    </ul>
+</div>
+<script>
+    $(document).ready(function() {
+        $('.sublnk').click(function() {
+            var $other_spoilers = $('a.sublnk').not(this);
+            $other_spoilers.siblings().hide('fast');
+
+            $other_spoilers.find('span').html('<i class="fas fa-angle-down"></i>');
+
+            $(this).siblings().toggle('fast', function() {
+                var $icon = $(this).siblings('a.sublnk').find('span');
+
+                if ($icon.html() == '<i class="fas fa-angle-down"></i>')
+                    $icon.html('<i class="fas fa-angle-up"></i>');
+                else
+                    $icon.html('<i class="fas fa-angle-down"></i>');
+            });
+
+            return false;
+        });
+    });
+</script>

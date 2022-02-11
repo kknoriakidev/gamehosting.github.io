@@ -1,0 +1,69 @@
+<div class="container2">
+    <div class="container">
+        <div class="gamepanel">
+            <div class="center">
+                <div class="title">Авторизация пользователя</div>
+                <div class="description">Войдите в свой аккаунт для полноценного доступа к сайту</div>
+                <form action="[home]user/section/auth/go/1" method="post" id="auth">
+                    <div class="sign-form">
+                        <div class="informer red mgbot10">Никому не сообщайте данные для входа в ваш аккаунт. Для добавления доступа к серверу используйте раздел "Друзья".</div>
+                        <ul class="sign">
+                            <li>
+                                <label class="sign-label" for="login">Логин:</label>
+                                <input id="login" name="login" type="text" class="sign-input left" placeholder="Логин или почтa">
+                                <div class="sign-another">Нет логина? <a href="[home]user/section/signup" class="link">Зарегистрируйтесь</a></div>
+                            </li>
+                            <li>
+                                <label class="sign-label" for="passwd">Пароль:</label>
+                                <input id="passwd" name="passwd" type="password" class="sign-input left" placeholder="Пароль">
+                                <a href="[home]user/section/recovery" class="sign-another link">Забыли пароль?</a>
+                            </li>
+                            <li id="security_code" class="none">
+                                <label class="sign-label" for="code">Защитный код:</label>
+                                <input id="code" name="code" class="sign-input" placeholder="Код подтверждения с Email">
+                            </li>
+                            <li>
+                                <div class="sign-label m768none">&nbsp;</div>
+                                <div class="sign-input">
+                                    <button class="btn-small btn-red" onclick="loading(1)">Авторизоваться</button>
+                                </div>
+                            </li>
+                            <li>
+                            </li>
+                        </ul>
+                        <div class="stock">
+                            <div>Разместите активную ссылку или один из баннеров из личного кабинета у себя на сайте/форуме с Вашей партнерской ссылкой и каждый зарегистрированный пользователь по Вашей партнерской ссылке будет приносить Вам 15% от суммы всех платежей.</div>
+                            <div>
+                                <p>Скидки на аренду и продление при оплате на длительный срок:</p>
+                                <ul>
+                                    <li>90 дней - скидка 5%</li>
+                                    <li>180 дней - скидка 10%</li>
+                                    <li>360 дней - скидка 20%</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <p>Скидки на аренду и продление крупным проектам. Если у вас имеется:</p>
+                                <ul>
+                                    <li>5 и более серверов - персональная скидка 10%</li>
+                                    <li>10 и более серверов - персональная скидка 15%</li>
+                                </ul>
+                                <p>Для получения скидки необходимо написать в тех. поддержку.</p>
+                                <p>Скидка предоставляется на аккаунт и распространяется на оплату всех серверов.</p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- styles !-->
+<link rel="stylesheet" type="text/css" href="[css]pointer.css" media="screen" />
+
+<!-- scripts !-->
+<script src="[js]sections/user/auth.js" type="text/javascript"></script>
+
+<script src="//ulogin.ru/js/ulogin.js"></script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
