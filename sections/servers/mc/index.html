@@ -1,0 +1,178 @@
+<div class="full right">
+    <div class="server">
+        <div class="title"><img src="[games]" alt="[game]" class="game-ico"> <span class="sname bound" id="name">[name]</span><span class="serverid m600none">#[id]</span></div>
+        <div class="data">
+            <div class="control-buttons">
+                <span id="buttons">[btn]</span>
+                <div class="change_close" id="maps_close" onclick="server_change_close('[id]')">x</div>
+                <div class="change_map" id="maps_list"></div>
+                <a href="[home]servers/id/[id]/section/rcon" class="thumb tacenter">RCON управление</a>
+            </div>
+            <div class="location m480none">
+                <div class="map">
+                    <span id="image"><img src="[img]"></span>
+                    <div class="gamer">Онлайн: <span id="online">[online]</span> / [slots]</div>
+                </div>
+                <div class="progress-bar">
+                    <progress id="progressbar" value="[online]" max="[slots]"></progress>
+                </div>
+                <div class="map-name bound" id="status">[status]</div>
+            </div>
+            <ul class="info">
+                <li class="b481none"><span>ID сервера:</span> [id]</li>
+                <li><span>IP-адрес:</span>
+                    <input type="text" value="[address]" class="input-ip" onclick="this.focus();this.select()" readonly=""> <a href="steam://connect/[address]" class="knob m600none">Подключиться</a></li>
+                <li><span>Доменный адрес:</span>
+                    <input type="text" value="[domain_address]" class="input-ip" onclick="this.focus();this.select()" readonly="">
+                </li>
+                <li class="b481none" id="status">[status]</li>
+                <li class="b481none"><span>Онлайн:</span> <span id="online">[online]</span> / [slots]</li>
+                <li><span>Локация:</span> [unit]</li>
+                <li><span>Тариф:</span> [tarif]</li>
+                <li><span>Сборка:</span> [pack]</li>
+                <li><span>Арендован:</span> [date]</li>
+                <li id="time"><span>Арендован до:</span> [time]</li>
+                <li><span id="time_end">[time_end]</span> <a href="[home]servers/id/[id]/section/tarif" class="knob">Продлить аренду</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="main">
+        <div class="lcol">
+            <div class="server stress">
+                <div class="title">Показатели нагрузки</div>
+                <div class="info">
+                    <ul>
+                        <li>
+                            <div id="load_usr"></div>
+                        </li>
+                        <li>
+                            <div id="load_cpu"></div>
+                        </li>
+                        <li>
+                            <div id="load_ram"></div>
+                        </li>
+                        <li>
+                            <div id="load_hdd"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="server access">
+                <div class="title">Быстрый доступ</div>
+                <div class="info">
+                    <ul>
+                        <li>
+                            <div class="left">Основные настройки (server.cfg)</div>
+                            <div class="right">
+                                <a href="[home]servers/id/[id]/section/settings/subsection/server">
+                                    <div class="knob">Перейти</div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="left">Админы на сервере (users.ini)</div>
+                            <div class="right">
+                                <a href="[home]servers/id/[id]/section/settings/subsection/admins">
+                                    <div class="knob">Перейти</div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="left">Бан листы (banned.cfg / listip.cfg)</div>
+                            <div class="right">
+                                <a href="[home]servers/id/[id]/section/settings/subsection/bans">
+                                    <div class="knob">Перейти</div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="left">Снимки консоли (StartLogs)</div>
+                            <div class="right">
+                                <a href="[home]servers/id/[id]/section/settings/subsection/startlogs">
+                                    <div class="knob">Перейти</div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="left">Планировщик задач (CronTab)</div>
+                            <div class="right">
+                                <a href="[home]servers/id/[id]/section/settings/subsection/crontab">
+                                    <div class="knob">Перейти</div>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="rcol">
+            <table class="ipad">
+                <thead>
+                    <tr>
+                        <th class="players-number">#</th>
+                        <th class="players-nick">Ник</th>
+                        <th class="players-score">Фраги</th>
+                        <th class="players-time">Время</th>
+                    </tr>
+                </thead>
+                <tbody id="players">
+				    [players]
+				</tbody>
+            </table>
+            <style>
+                table.ipad tbody tr:hover {
+                    background-color: #f7f3f7;
+                }
+            </style>
+        </div>
+    </div>
+</div>
+<script src="[js]load.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var wait = false;
+
+    $(document).ready(function() {
+        setTimeout(function() {
+            update_resources('[id]', true)
+        }, 500);
+        setTimeout(function() {
+            update_info('[id]', true)
+        }, 500);
+        setTimeout(function() {
+            update_status('[id]', true)
+        }, 500);
+    });
+
+    var $load_usr = $("#load_usr").percentageLoader({
+        width: 105,
+        height: 105,
+        progress: 0,
+        value: 'USR'
+    });
+    var $load_cpu = $("#load_cpu").percentageLoader({
+        width: 105,
+        height: 105,
+        progress: 0,
+        value: 'CPU'
+    });
+    var $load_ram = $("#load_ram").percentageLoader({
+        width: 105,
+        height: 105,
+        progress: 0,
+        value: 'RAM'
+    });
+    var $load_hdd = $("#load_hdd").percentageLoader({
+        width: 105,
+        height: 105,
+        progress: 0,
+        value: 'HDD'
+    });
+
+    $(document).ready(function() {
+        var progressbar = $('#progressbar'),
+            max = progressbar.attr('max'),
+            time = (1000 / max) * 5,
+            value = progressbar.val();
+    });
+</script>
+<script src="[js]sections/servers/index.js" type="text/javascript"></script>
