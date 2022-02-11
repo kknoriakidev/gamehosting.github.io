@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta http-equiv="Cache-Control" content="max-age=259200, must-revalidate" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Game-Host.net - Лучший игровой хостинг в России и СНГ.</title>
+    <link rel="icon" href="[home]favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="[description]" />
+    <meta name="keywords" content="[keywords]" />
+
+    <link rel="stylesheet" type="text/css" href="[css]reset.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="[css]styles.css?ver8" media="screen" />
+    <link rel="stylesheet" type="text/css" href="[css]bootbox.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="[css]bootstrap.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="[css]style.css?ver3" media="screen" />
+    <link rel="stylesheet" type="text/css" href="[css]code.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="[css]tabs.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="[home]template/highslide/highslide.css" />
+    <link rel="stylesheet" type="text/css" href="[css]fonts.css?ver2" media="screen" />
+    <link rel="stylesheet" type="text/css" href="[css]fontawesome/css/all.css" media="screen" />
+
+    <script src="[js]jquery.js"></script>
+    <script src="[js]form.js"></script>
+
+    <script>
+        var title = '[title]';
+        var home = '[home]';
+
+        jQuery(document).ready(function($) {
+            $("textarea").keydown(function(event) {
+                if (event.keyCode != 9)
+                    return;
+
+                event.preventDefault();
+
+                var
+                    obj = $(this)[0],
+                    start = obj.selectionStart,
+                    end = obj.selectionEnd,
+                    before = obj.value.substring(0, start),
+                    after = obj.value.substring(end, obj.value.length);
+                obj.value = before + "\t" + after;
+                obj.setSelectionRange(start + 1, start + 1);
+            });
+
+            setTimeout(function() {
+                help_notice_check()
+            }, 1000);
+
+            $(".loader span").each(function(i) {
+                var _item = $(this);
+
+                setTimeout(function($) {
+                    _item.removeClass("jmp");
+                    _item.css({
+                        "left": '110%'
+                    })
+                }, 150 * i);
+                setTimeout(function($) {
+                    _item.addClass("jmp");
+                    _item.css({
+                        "left": '90%'
+                    })
+                }, 1000 + 150 * i);
+            });
+
+            var _pageLoader = setInterval(function() {
+                $(".loader span").each(function(i) {
+                    var _item = $(this);
+
+                    setTimeout(function($) {
+                        _item.removeClass("jmp");
+                        _item.css({
+                            "left": '110%'
+                        })
+                    }, 150 * i);
+                    setTimeout(function($) {
+                        _item.addClass("jmp");
+                        _item.css({
+                            "left": '90%'
+                        })
+                    }, 1000 + 150 * i);
+                })
+            }, 1500);
+        });
+    </script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="first">
+            <div class="center">
+                <label for="sidebar-left"><i class="fas fa-user" aria-hidden="true"></i></label>
+                <input type="checkbox" id="sidebar-left" />
+                <div id="sidebar-l">
+                    <div class="headline">
+                        <label for="sidebar-left"><i class="fas fa-times" aria-hidden="true"></i></label>
+                        <div class="title">Профиль</div>
+                    </div>
+					|!auth|
+                    <ul>
+                        <li><a href="[home]user/section/auth" class="login"><i class="fas fa-sign-in-alt none" aria-hidden="true"></i> Авторизоваться</a></li>
+                        <li><a href="[home]user/section/signup" class="btn-white btn-small"><i class="fas fa-user-plus none" aria-hidden="true"></i> Зарегистрироваться</a></li>
+                    </ul>
+					|_!auth|
+					|auth|
+                    <ul>
+                        |admin|<li><a href="[home]acp" class="login transform" target="_blank"><i class="far fa-dot-circle" aria-hidden="true"></i> Админ-Центр</a></li>|_admin|
+						<li><a href="[home]user/section/lk" class="login transform"><i class="fas fa-user" aria-hidden="true"></i> Личный кабинет</a></li>
+                        <li><a href="[home]help/section/open" class="login transform"><i class="fas fa-users" aria-hidden="true"></i> Тех. поддержка</a></li>
+                        |!servers|<li><a href="[home]services" class="login transform"><i class="fas fa-gamepad" aria-hidden="true"></i> Арендовать услугу</a></li>|_!servers|
+						|servers|<li><a href="[home]servers" class="login transform"><i class="fas fa-gamepad" aria-hidden="true"></i> Мои серверы</a></li>|_servers|
+                        <li><a href="[home]user/section/replenish" class="login transform"><i class="fas fa-ruble-sign" aria-hidden="true"></i> Баланс: [balance] [cur]</a></li>
+                        <li><a href="[home]user/section/quit" class="btn-white btn-small transform"><i class="fas fa-sign-out-alt none" aria-hidden="true"></i> Выйти</a></li>
+                    </ul>
+					|_auth|
+                </div>
+            </div>
+        </div>
+        <div class="second">
+            <div class="center">
+                <a href="[home]">
+                    <div class="logo"></div>
+                </a>
+                <label for="sidebar-right"><i class="fas fa-bars" aria-hidden="true"></i></label>
+                <input type="checkbox" id="sidebar-right" />
+                <div id="sidebar-r">
+                    <div class="headline">
+                        <label for="sidebar-right"><i class="fas fa-times" aria-hidden="true"></i></label>
+                        <div class="title">Навигация</div>
+                    </div>
+                    <ul>
+                        <li><a href="[home]"><i class="fas fa-home" aria-hidden="true"></i> Главная</a></li>
+                        <li><a href="[home]news"><i class="fas fa-newspaper-o" aria-hidden="true"></i> Новости</a></li>
+                        <li><a href="[home]services"><i class="fas fa-server" aria-hidden="true"></i> Заказать сервер</a></li>
+                        <li><a href="[home]wiki"><i class="fas fa-question" aria-hidden="true"></i> WIKI</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="nav">
+        <div class="center"><i class="fas fa-home" aria-hidden="true"></i>[nav]</div>
+    </div>
+    <div class="container2">
+        [main]
+    </div>
+    <div class="footer">
+        <div class="info m480none">
+            <ul class="center">
+                <li class="col1">
+                    <div class="headline">Информация</div>
+                    <ul>
+                        <li><a href="[home]about">О нас</a></li>
+                        <li><a href="[home]contacts">Контакты</a></li>
+                        <li><a href="[home]oferta">Договор оферты</a></li>
+                        <li><a href="[home]partners">Наши партнеры</a></li>
+                    </ul>
+                </li>
+                <li class="col1">
+                    <div class="headline">Полезное</div>
+                    <ul>
+                        <li><a href="[home]partner">Партнерская программа</a></li>
+                    </ul>
+                </li>
+                <li class="col1">
+                    <div class="headline">Тех. поддержка</div>
+                    <ul>
+                        <li><i class="fas fa-users" aria-hidden="true"></i> Тикеты на сайте</li>
+                        <li><i class="fab fa-vk" aria-hidden="true"></i> vk.com/gameshosts</li>
+                        <li><i class="fas fa-clock-o" aria-hidden="true"></i> Ненормированный рабочий день</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="copyright">
+            <div class="center">
+                <p>Copyright © <script type="text/javascript">document.write(new Date().getFullYear());</script>
+					<a href="[home]">GAME-HOST.NET</a> - Надежный хостинг игровых серверов</p>
+                <p>
+
+                </p>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="scrollup"><i class="fas fa-arrow-up" aria-hidden="true"></i></a>
+
+    <div id="help_notice_block"></div>
+    <div id="loadinginfo">
+        <div class="loader">
+            <i class="fas fa-sync fa-spin" aria-hidden="true"></i> Загрузка...
+        </div>
+    </div>
+    <script src="[home]template/highslide/highslide.js"></script>
+    <script>
+        // HighSlide
+        hs.graphicsDir = '[home]template/highslide/graphics/';
+        hs.outlineType = 'rounded-white';
+        hs.numberOfImagesToPreload = 0;
+        hs.showCredits = false;
+        hs.align = 'center';
+        hs.transitions = ['expand', 'crossfade'];
+
+        hs.lang = {
+            loadingText: 'Загрузка...',
+            playTitle: 'Просмотр слайдшоу (пробел)',
+            pauseTitle: 'Пауза',
+            previousTitle: 'Предыдущее изображение',
+            nextTitle: 'Следующее изображение',
+            moveTitle: 'Переместить',
+            closeTitle: 'Закрыть (Esc)',
+            fullExpandTitle: 'Развернуть до полного размера',
+            restoreTitle: 'Кликните для закрытия картинки, нажмите и удерживайте для перемещения',
+            focusTitle: 'Сфокусировать',
+            loadingTitle: 'Нажмите для отмены'
+        };
+
+        // ScrollUP
+        $(document).ready(function() {
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 200) {
+                    $('.scrollup').fadeIn();
+                } else {
+                    $('.scrollup').fadeOut();
+                }
+            });
+            $('.scrollup').click(function() {
+                $("html, body").animate({
+                    scrollTop: 0
+                }, 600);
+                return false;
+            });
+        });
+
+        //ToolTip
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+
+    <script src="[js]bootstrap.min.js"></script>
+    <script src="[js]bootbox.js"></script>
+    <script src="[js]code.js"></script>
+    <script src="[js]functions.js"></script>
+</body>
+
+</html>
